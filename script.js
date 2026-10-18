@@ -20,6 +20,8 @@ form.addEventListener("submit", function (event) {
     const li = document.createElement("li");
     const span = document.createElement("span");
     const checkbox = document.createElement("input");
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "删除";
 
     checkbox.type = "checkbox";
     span.textContent = taskName;
@@ -36,8 +38,18 @@ form.addEventListener("submit", function (event) {
         updateSummary();
     });
 
+    deleteBtn.addEventListener("click", function () {
+        if (checkbox.checked) {
+            completed--;
+        }
+        total--;
+        li.remove();
+        updateSummary();
+    })
+
     li.appendChild(checkbox);
     li.appendChild(span);
+    li.appendChild(deleteBtn);
     taskList.appendChild(li);
 
     total++;
