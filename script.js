@@ -19,12 +19,18 @@ function renderTasks() {
     tasks.forEach(function (task, index) {
         const li = document.createElement("li");
         const checkbox = document.createElement("input");
+        const taskInfo = document.createElement("div");
+        taskInfo.classList.add("task-info");
         const span = document.createElement("span");
         const deleteBtn = document.createElement("button");
 
         checkbox.type = "checkbox";
         checkbox.checked = task.completed;
         span.textContent = task.name;
+        const dateText = document.createElement("small");
+        dateText.textContent = "创建于：" + (task.createdAt || "旧任务暂无日期");
+        taskInfo.appendChild(span);
+        taskInfo.appendChild(dateText);
         deleteBtn.textContent = "删除";
 
         if (task.completed) {
@@ -46,7 +52,7 @@ function renderTasks() {
         });
 
         li.appendChild(checkbox);
-        li.appendChild(span);
+        li.appendChild(taskInfo);
         li.appendChild(deleteBtn);
         taskList.appendChild(li);
     });
@@ -80,7 +86,8 @@ form.addEventListener("submit", function (event) {
 
     tasks.push({
         name: taskName,
-        completed: false
+        completed: false,
+        createdAt: new Date().toLocaleDateString("sv-SE")
     });
 
     saveTasks();

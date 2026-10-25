@@ -141,3 +141,15 @@ button:hover {
     border-radius: 999px;
     transition: width 0.3s ease;
 }
+
+.task-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.task-info small {
+    font-size: 12px;
+    color: #888;
+}
